@@ -1,5 +1,4 @@
-## NIM: 240411100211 
-## Nama: Kamaliyyatul Bararah
+## 24041110021 Kamaliyyatul Bararah
 
 This is a small sample book to give you a feel for how book content is
 structured.
