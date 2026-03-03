@@ -182,3 +182,118 @@ Berdasarkan hasil visualisasi scatter plot antara sepal length dan sepal width, 
 ![original image](https://cdn.mathpix.com/snip/images/iT4Xj8fRcAwT4AI_oDVDJKNmDaNI3cv0BFxkJoB2VBw.original.fullsize.png)
 
 Berbeda dengan atribut sepal, scatter plot antara petal length dan petal width menunjukkan pola sebaran yang lebih teratur dan cenderung membentuk hubungan linear positif. Titik-titik data terlihat mengikuti arah tertentu, yang menandakan adanya korelasi yang kuat antara kedua atribut petal tersebut.
+
+## Pengukuran Jarak Pada Dataset Iris Flower
+
+### 1. Similarity
+Similarity (kemiripan) dalam penambangan data adalah ukuran yang digunakan untuk mengukur secara numerik tingkat kesamaan antara dua objek data berdasarkan atribut-atribut yang dimilikinya. Nilai similarity menunjukkan seberapa mirip dua objek tersebut dalam suatu dataset.
+
+Similarity biasanya dinyatakan dalam bentuk nilai dengan rentang (range) antara 0 sampai 1:
+
+- Nilai 0 → menunjukkan bahwa dua objek sangat berbeda atau tidak memiliki kesamaan.
+
+- Nilai 1 → menunjukkan bahwa dua objek sangat mirip atau identik.
+
+- Semakin tinggi nilai similarity, maka semakin mirip kedua objek tersebut.
+
+Dengan demikian, similarity memberikan gambaran kuantitatif mengenai tingkat kemiripan antar data dalam bentuk angka yang dapat dihitung dan dianalisis secara matematis.
+
+### 2. Dissimilarity
+
+Dissimilarity adalah ukuran numerik dari perbedaan antara dua objek data berdasarkan atribut-atribut yang dimilikinya. Nilai dissimilarity digunakan untuk menunjukkan seberapa besar tingkat ketidaksamaan atau perbedaan antar objek dalam suatu dataset.
+
+Dissimilarity menggambarkan jarak atau perbedaan secara kuantitatif, sehingga dapat dihitung dan dianalisis menggunakan metode matematis.
+
+Secara umum, interpretasi nilai dissimilarity adalah sebagai berikut:
+
+- Nilai dissimilarity akan sangat rendah apabila dua objek semakin mirip.
+- Nilai dissimilarity akan semakin besar apabila dua objek semakin berbeda.
+- Nilai minimum dissimilarity adalah 0, yang menunjukkan bahwa dua objek identik atau tidak memiliki perbedaan sama sekali.
+
+Dalam beberapa metode, nilai dissimilarity dapat berada dalam rentang tertentu, misalnya [0,1], namun pada metode lain seperti Euclidean Distance, nilainya dapat lebih dari 1 tergantung pada skala data.
+
+#### - Manhattan Distance
+
+Manhattan Distance adalah metode pengukuran jarak yang digunakan untuk menghitung tingkat perbedaan (dissimilarity) antara dua objek dengan menjumlahkan selisih absolut dari setiap atributnya.
+Metode ini menghitung jarak berdasarkan jalur horizontal dan vertikal (seperti pola jalan berbentuk grid), bukan garis lurus. Semakin besar nilai Manhattan Distance, maka semakin besar perbedaan antar objek. Nilai minimum jaraknya adalah 0, yang menunjukkan bahwa dua objek identik.
+Rumusnya:
+
+$d(i,j) = {|x_{i1} - x_{j1}|+| x_{i2} - x_{j2}|^2 + \ldots + |x_{ip} - x_{jp}|}$
+
+
+#### - Eucledien Distance
+
+Euclidean Distance merupakan salah satu metode pengukuran jarak yang termasuk dalam kategori dissimilarity, karena metode ini mengukur tingkat perbedaan antara dua objek berdasarkan nilai atribut numeriknya. Semakin besar hasil perhitungan Euclidean Distance, maka semakin besar perbedaan (dissimilarity) antara dua objek tersebut. Sebaliknya, jika hasilnya mendekati 0, maka kedua objek semakin mirip. 
+Rumusnya:
+
+$d(i,j) = \sqrt{(|x_{i1} - x_{j1}|^2 +| x_{i2} - x_{j2}|^2 + \ldots + |x_{ip} - x_{jp}|^2})$
+
+#### - Minkowski Distance
+
+Minkowski Distance adalah bentuk generalisasi dari Euclidean dan Manhattan. Artinya Euclidean dan Manhattan adalah bagian dari kelompok
+\[
+\begin{aligned}
+d(i,j) &= \sqrt[h]{|x_{i1}-x_{j1}|^{h} + |x_{i2}-x_{j2}|^{h} + \cdots + |x_{ip}-x_{jp}|^{h}} \\
+\\
+\text{dengan } 
+i &= (x_{i1}, x_{i2}, \dots, x_{ip}), \\
+j &= (x_{j1}, x_{j2}, \dots, x_{jp})
+\end{aligned}
+\]
+i = Melambangkan objek ke-i
+j = Melambangkan objek ke-j
+xi1 = Nilai fitur 1 dari objek ke-i
+xj1 = Nilai fitur 1 dari objek ke-j
+
+
+### Mengukur jarak dissimilarity pada suatu dataset
+
+#### - Mengukur jarak dataset Iris
+Pada dataset Iris diatas, tipe data yang dimiliki adalah bernilai numerik, karena hal itu penghitungan jarak untuk tipe data Iris kali ini akan digunakan metode Eucledian Distance
+##### - Perhitungan manual 
+Contoh perhitungan secara manual pada baris 2 dan 3 dengan kolom 1:
+\[
+d(2,1) = \sqrt{(|4{,}9 - 5{,}1|^2 + |3 - 3{,}5|^2 + |1{,}4 - 1{,}4|^2 + |0{,}2 - 0{,}2|^2)}
+\]
+\[
+= \sqrt{0{,}04 + 0{,}25}
+\]
+\[
+= 0{,}538
+\]
+\[
+d(3,1) = \sqrt{(|4{,}7 - 5{,}1|^2 + |3{,}2 - 3{,}5|^2 + |1{,}3 - 1{,}4|^2 + |0{,}2 - 0{,}2|^2)}
+\]
+
+\[
+= \sqrt{0{,}16 + 0{,}09 + 0{,}01 + 0}
+\]
+
+\[
+= 0{,}50990
+\]
+
+
+##### - Perhitungan Python
+
+```
+from scipy.spatial.distance import pdist, squareform
+
+X = df.select_dtypes(include=['float64', 'int64'])
+dist = pdist(X, metric='euclidean')
+distance_matrix = squareform(dist)
+
+distance_df = pd.DataFrame(distance_matrix)
+print(distance_df.iloc[:5, :5])
+```
+
+Terdapat tambahan library yang digunakan yaitu library scipy untuk mempermudah kita menghitung Euclidean Distance tanpa perlu coding manual. Selanjutnya data ditampilkan hanya sebesar 5x5 dihitung dari yang pertama
+
+Output yang dihasilkan:
+|   | 0        | 1        | 2        | 3        | 4        |
+|---|----------|----------|----------|----------|----------|
+| 0 | 0.000000 | 0.538516 | 0.509902 | 0.648074 | 0.141421 |
+| 1 | 0.538516 | 0.000000 | 0.300000 | 0.331662 | 0.608276 |
+| 2 | 0.509902 | 0.300000 | 0.000000 | 0.244949 | 0.509902 |
+| 3 | 0.648074 | 0.331662 | 0.244949 | 0.000000 | 0.648074 |
+| 4 | 0.141421 | 0.608276 | 0.509902 | 0.648074 | 0.000000 |

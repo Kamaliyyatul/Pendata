@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Data Understanding';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -407,6 +409,24 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berikut-contoh-analisa-kolerasinya">Berikut contoh Analisa Kolerasinya:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengukuran-jarak-pada-dataset-iris-flower">Pengukuran Jarak Pada Dataset Iris Flower</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity">1. Similarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity">2. Dissimilarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manhattan-distance">- Manhattan Distance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eucledien-distance">- Eucledien Distance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#minkowski-distance">- Minkowski Distance</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-dissimilarity-pada-suatu-dataset">Mengukur jarak dissimilarity pada suatu dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-dataset-iris">- Mengukur jarak dataset Iris</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-manual">- Perhitungan manual</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-python">- Perhitungan Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -705,6 +725,155 @@ Menunjukkan jenis bunga iris, yang terdiri dari tiga kategori:</p>
 <p>Berbeda dengan atribut sepal, scatter plot antara petal length dan petal width menunjukkan pola sebaran yang lebih teratur dan cenderung membentuk hubungan linear positif. Titik-titik data terlihat mengikuti arah tertentu, yang menandakan adanya korelasi yang kuat antara kedua atribut petal tersebut.</p>
 </section>
 </section>
+<section id="pengukuran-jarak-pada-dataset-iris-flower">
+<h2>Pengukuran Jarak Pada Dataset Iris Flower<a class="headerlink" href="#pengukuran-jarak-pada-dataset-iris-flower" title="Link to this heading">#</a></h2>
+<section id="similarity">
+<h3>1. Similarity<a class="headerlink" href="#similarity" title="Link to this heading">#</a></h3>
+<p>Similarity (kemiripan) dalam penambangan data adalah ukuran yang digunakan untuk mengukur secara numerik tingkat kesamaan antara dua objek data berdasarkan atribut-atribut yang dimilikinya. Nilai similarity menunjukkan seberapa mirip dua objek tersebut dalam suatu dataset.</p>
+<p>Similarity biasanya dinyatakan dalam bentuk nilai dengan rentang (range) antara 0 sampai 1:</p>
+<ul class="simple">
+<li><p>Nilai 0 → menunjukkan bahwa dua objek sangat berbeda atau tidak memiliki kesamaan.</p></li>
+<li><p>Nilai 1 → menunjukkan bahwa dua objek sangat mirip atau identik.</p></li>
+<li><p>Semakin tinggi nilai similarity, maka semakin mirip kedua objek tersebut.</p></li>
+</ul>
+<p>Dengan demikian, similarity memberikan gambaran kuantitatif mengenai tingkat kemiripan antar data dalam bentuk angka yang dapat dihitung dan dianalisis secara matematis.</p>
+</section>
+<section id="dissimilarity">
+<h3>2. Dissimilarity<a class="headerlink" href="#dissimilarity" title="Link to this heading">#</a></h3>
+<p>Dissimilarity adalah ukuran numerik dari perbedaan antara dua objek data berdasarkan atribut-atribut yang dimilikinya. Nilai dissimilarity digunakan untuk menunjukkan seberapa besar tingkat ketidaksamaan atau perbedaan antar objek dalam suatu dataset.</p>
+<p>Dissimilarity menggambarkan jarak atau perbedaan secara kuantitatif, sehingga dapat dihitung dan dianalisis menggunakan metode matematis.</p>
+<p>Secara umum, interpretasi nilai dissimilarity adalah sebagai berikut:</p>
+<ul class="simple">
+<li><p>Nilai dissimilarity akan sangat rendah apabila dua objek semakin mirip.</p></li>
+<li><p>Nilai dissimilarity akan semakin besar apabila dua objek semakin berbeda.</p></li>
+<li><p>Nilai minimum dissimilarity adalah 0, yang menunjukkan bahwa dua objek identik atau tidak memiliki perbedaan sama sekali.</p></li>
+</ul>
+<p>Dalam beberapa metode, nilai dissimilarity dapat berada dalam rentang tertentu, misalnya [0,1], namun pada metode lain seperti Euclidean Distance, nilainya dapat lebih dari 1 tergantung pada skala data.</p>
+<section id="manhattan-distance">
+<h4>- Manhattan Distance<a class="headerlink" href="#manhattan-distance" title="Link to this heading">#</a></h4>
+<p>Manhattan Distance adalah metode pengukuran jarak yang digunakan untuk menghitung tingkat perbedaan (dissimilarity) antara dua objek dengan menjumlahkan selisih absolut dari setiap atributnya.
+Metode ini menghitung jarak berdasarkan jalur horizontal dan vertikal (seperti pola jalan berbentuk grid), bukan garis lurus. Semakin besar nilai Manhattan Distance, maka semakin besar perbedaan antar objek. Nilai minimum jaraknya adalah 0, yang menunjukkan bahwa dua objek identik.
+Rumusnya:</p>
+<p><span class="math notranslate nohighlight">\(d(i,j) = {|x_{i1} - x_{j1}|+| x_{i2} - x_{j2}|^2 + \ldots + |x_{ip} - x_{jp}|}\)</span></p>
+</section>
+<section id="eucledien-distance">
+<h4>- Eucledien Distance<a class="headerlink" href="#eucledien-distance" title="Link to this heading">#</a></h4>
+<p>Euclidean Distance merupakan salah satu metode pengukuran jarak yang termasuk dalam kategori dissimilarity, karena metode ini mengukur tingkat perbedaan antara dua objek berdasarkan nilai atribut numeriknya. Semakin besar hasil perhitungan Euclidean Distance, maka semakin besar perbedaan (dissimilarity) antara dua objek tersebut. Sebaliknya, jika hasilnya mendekati 0, maka kedua objek semakin mirip.
+Rumusnya:</p>
+<p><span class="math notranslate nohighlight">\(d(i,j) = \sqrt{(|x_{i1} - x_{j1}|^2 +| x_{i2} - x_{j2}|^2 + \ldots + |x_{ip} - x_{jp}|^2})\)</span></p>
+</section>
+<section id="minkowski-distance">
+<h4>- Minkowski Distance<a class="headerlink" href="#minkowski-distance" title="Link to this heading">#</a></h4>
+<p>Minkowski Distance adalah bentuk generalisasi dari Euclidean dan Manhattan. Artinya Euclidean dan Manhattan adalah bagian dari kelompok
+[
+\begin{aligned}
+d(i,j) &amp;= \sqrt[h]{|x_{i1}-x_{j1}|^{h} + |x_{i2}-x_{j2}|^{h} + \cdots + |x_{ip}-x_{jp}|^{h}} \
+\
+\text{dengan }
+i &amp;= (x_{i1}, x_{i2}, \dots, x_{ip}), \
+j &amp;= (x_{j1}, x_{j2}, \dots, x_{jp})
+\end{aligned}
+]
+i = Melambangkan objek ke-i
+j = Melambangkan objek ke-j
+xi1 = Nilai fitur 1 dari objek ke-i
+xj1 = Nilai fitur 1 dari objek ke-j</p>
+</section>
+</section>
+<section id="mengukur-jarak-dissimilarity-pada-suatu-dataset">
+<h3>Mengukur jarak dissimilarity pada suatu dataset<a class="headerlink" href="#mengukur-jarak-dissimilarity-pada-suatu-dataset" title="Link to this heading">#</a></h3>
+<section id="mengukur-jarak-dataset-iris">
+<h4>- Mengukur jarak dataset Iris<a class="headerlink" href="#mengukur-jarak-dataset-iris" title="Link to this heading">#</a></h4>
+<p>Pada dataset Iris diatas, tipe data yang dimiliki adalah bernilai numerik, karena hal itu penghitungan jarak untuk tipe data Iris kali ini akan digunakan metode Eucledian Distance</p>
+<section id="perhitungan-manual">
+<h5>- Perhitungan manual<a class="headerlink" href="#perhitungan-manual" title="Link to this heading">#</a></h5>
+<p>Contoh perhitungan secara manual pada baris 2 dan 3 dengan kolom 1:
+[
+d(2,1) = \sqrt{(|4{,}9 - 5{,}1|^2 + |3 - 3{,}5|^2 + |1{,}4 - 1{,}4|^2 + |0{,}2 - 0{,}2|^2)}
+]
+[
+= \sqrt{0{,}04 + 0{,}25}
+]
+[
+= 0{,}538
+]
+[
+d(3,1) = \sqrt{(|4{,}7 - 5{,}1|^2 + |3{,}2 - 3{,}5|^2 + |1{,}3 - 1{,}4|^2 + |0{,}2 - 0{,}2|^2)}
+]</p>
+<p>[
+= \sqrt{0{,}16 + 0{,}09 + 0{,}01 + 0}
+]</p>
+<p>[
+= 0{,}50990
+]</p>
+</section>
+<section id="perhitungan-python">
+<h5>- Perhitungan Python<a class="headerlink" href="#perhitungan-python" title="Link to this heading">#</a></h5>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">squareform</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">])</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">pdist</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+<span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">squareform</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+
+<span class="n">distance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">distance_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Terdapat tambahan library yang digunakan yaitu library scipy untuk mempermudah kita menghitung Euclidean Distance tanpa perlu coding manual. Selanjutnya data ditampilkan hanya sebesar 5x5 dihitung dari yang pertama</p>
+<p>Output yang dihasilkan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.538516</p></td>
+<td><p>0.509902</p></td>
+<td><p>0.648074</p></td>
+<td><p>0.141421</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0.538516</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.300000</p></td>
+<td><p>0.331662</p></td>
+<td><p>0.608276</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.509902</p></td>
+<td><p>0.300000</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.244949</p></td>
+<td><p>0.509902</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.648074</p></td>
+<td><p>0.331662</p></td>
+<td><p>0.244949</p></td>
+<td><p>0.000000</p></td>
+<td><p>0.648074</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>0.141421</p></td>
+<td><p>0.608276</p></td>
+<td><p>0.509902</p></td>
+<td><p>0.648074</p></td>
+<td><p>0.000000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -796,6 +965,24 @@ Menunjukkan jenis bunga iris, yang terdiri dari tiga kategori:</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif">- Statistik Deskriptif</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-kolerasi">- Analisa kolerasi</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#berikut-contoh-analisa-kolerasinya">Berikut contoh Analisa Kolerasinya:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengukuran-jarak-pada-dataset-iris-flower">Pengukuran Jarak Pada Dataset Iris Flower</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity">1. Similarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dissimilarity">2. Dissimilarity</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#manhattan-distance">- Manhattan Distance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eucledien-distance">- Eucledien Distance</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#minkowski-distance">- Minkowski Distance</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-dissimilarity-pada-suatu-dataset">Mengukur jarak dissimilarity pada suatu dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengukur-jarak-dataset-iris">- Mengukur jarak dataset Iris</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-manual">- Perhitungan manual</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-python">- Perhitungan Python</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
