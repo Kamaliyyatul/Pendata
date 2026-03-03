@@ -231,15 +231,14 @@ $d(i,j) = \sqrt{(|x_{i1} - x_{j1}|^2 +| x_{i2} - x_{j2}|^2 + \ldots + |x_{ip} - 
 #### - Minkowski Distance
 
 Minkowski Distance adalah bentuk generalisasi dari Euclidean dan Manhattan. Artinya Euclidean dan Manhattan adalah bagian dari kelompok
-\[
+$$
 \begin{aligned}
-d(i,j) &= \sqrt[h]{|x_{i1}-x_{j1}|^{h} + |x_{i2}-x_{j2}|^{h} + \cdots + |x_{ip}-x_{jp}|^{h}} \\
-\\
-\text{dengan } 
+d(i,j) &= \sqrt[h]{|x_{i1}-x_{j1}|^{h} + |x_{i2}-x_{j2}|^{h} + \cdots + |x_{ip}-x_{jp}|^{h}} \\[6pt]
+\text{dengan } \quad
 i &= (x_{i1}, x_{i2}, \dots, x_{ip}), \\
 j &= (x_{j1}, x_{j2}, \dots, x_{jp})
 \end{aligned}
-\]
+$$
 i = Melambangkan objek ke-i
 j = Melambangkan objek ke-j
 xi1 = Nilai fitur 1 dari objek ke-i
@@ -252,27 +251,29 @@ xj1 = Nilai fitur 1 dari objek ke-j
 Pada dataset Iris diatas, tipe data yang dimiliki adalah bernilai numerik, karena hal itu penghitungan jarak untuk tipe data Iris kali ini akan digunakan metode Eucledian Distance
 ##### - Perhitungan manual 
 Contoh perhitungan secara manual pada baris 2 dan 3 dengan kolom 1:
-\[
-d(2,1) = \sqrt{(|4{,}9 - 5{,}1|^2 + |3 - 3{,}5|^2 + |1{,}4 - 1{,}4|^2 + |0{,}2 - 0{,}2|^2)}
-\]
-\[
+$$
+d(2,1) = \sqrt{(4{,}9 - 5{,}1)^2 + (3 - 3{,}5)^2 + (1{,}4 - 1{,}4)^2 + (0{,}2 - 0{,}2)^2}
+$$
+
+$$
 = \sqrt{0{,}04 + 0{,}25}
-\]
-\[
+$$
+
+$$
 = 0{,}538
-\]
-\[
-d(3,1) = \sqrt{(|4{,}7 - 5{,}1|^2 + |3{,}2 - 3{,}5|^2 + |1{,}3 - 1{,}4|^2 + |0{,}2 - 0{,}2|^2)}
-\]
+$$
 
-\[
+$$
+d(3,1) = \sqrt{(4{,}7 - 5{,}1)^2 + (3{,}2 - 3{,}5)^2 + (1{,}3 - 1{,}4)^2 + (0{,}2 - 0{,}2)^2}
+$$
+
+$$
 = \sqrt{0{,}16 + 0{,}09 + 0{,}01 + 0}
-\]
+$$
 
-\[
+$$
 = 0{,}50990
-\]
-
+$$
 
 ##### - Perhitungan Python
 
@@ -297,3 +298,134 @@ Output yang dihasilkan:
 | 2 | 0.509902 | 0.300000 | 0.000000 | 0.244949 | 0.509902 |
 | 3 | 0.648074 | 0.331662 | 0.244949 | 0.000000 | 0.648074 |
 | 4 | 0.141421 | 0.608276 | 0.509902 | 0.648074 | 0.000000 |
+
+
+##### - Perhitungan Orange
+![original image](https://cdn.mathpix.com/snip/images/9PGgc7ny0uksXf9OeJWUUqJ1W74_wYqqPmGLGPGhBL8.original.fullsize.png)
+3 perhitungan diatas, memiliki kesamaan nilai, artinya perhitungan yang dilakukan sudah dilakukan secara benar dan urut
+
+#### - Mengukur jarak dataset Tipe data campuran
+Dataset yang digunakan dalam contoh ini adalah dataset berjudul Student Alcohol Consumption. Dataset tersebut memiliki kurang lebih 30 atribut. Namun, pada penugasan ini hanya digunakan 7 atribut saja, yaitu sex, age, Medu, Fedu, Fjob, activities, dan schoolsup.
+
+Atribut-atribut tersebut terdiri dari tipe data yang berbeda (numerik dan kategorikal), sehingga termasuk dalam kategori data campuran. Oleh karena itu, diperlukan metode pengukuran jarak yang dapat menangani perbedaan tipe data tersebut. Selanjutnya akan dilakukan proses perhitungan jarak antar data berdasarkan atribut yang telah dipilih.
+
+#### Perhitungan Manual
+##### 1. Nominal
+Menghitung nominal pada baris 1 dan 2
+Jika nilainya sama = 0
+Jika nilainya beda = 1
+
+    Sex        = 0  
+    Fjob       = 1  
+    Activities = 0  
+    Schoolsup  = 1  
+    -----------  
+    Jumlah     = 2
+##### 2. Numerik
+Menghitung numerik pada fitur age.
+Rumus:
+$$
+d_{ij}^{(f)} =
+\frac{|x_{if} - x_{jf}|}{\max(x_f) - \min(x_f)}
+$$
+
+$$
+d_{1,2}^{(f)} =
+\frac{|18 - 17|}{22 - 15}
+$$
+
+$$
+= \frac{1}{7} = 0,143
+$$
+    Age = 0,143
+##### 3. Ordinal
+    urutan = 0
+             1           
+             2
+             3
+             4
+Rumus:     
+$$
+z = \frac{r - \min}{\max - \min}
+$$
+Hitung dari data pada baris 1:
+$$
+\frac{4-0}{4-0} = \frac {4}{4}=1
+$$
+Hitung dari data pada baris 2:
+$$
+\frac {1-0} {4-0} = \frac {1}{4}=0,25
+$$
+$$
+1 - 0,25 = 0,75
+$$
+
+Lakukan hal yang sama pada tipe data fedu
+Hasil akhir: 0,75
+
+##### 4. Hasil akhir nilai gower
+
+Nilai dari tipe data sebelumnya dijumlahkan, kemudian hasilnya dibagi berdasarkan jumlah fitur yang dimiliki.
+$$
+\frac{2 + 0,143 + 0,75 + 0,75}{7} = 0,520
+$$
+
+
+#### Perhitungan Python
+
+```
+import numpy as np
+
+data = df.copy()
+n = data.shape[0]
+
+numeric_cols = data.select_dtypes(include=[np.number]).columns
+categorical_cols = data.select_dtypes(exclude=[np.number]).columns
+
+for col in numeric_cols:
+   min_val = data[col].min()
+   max_val = data[col].max()
+   
+   if max_val != min_val:
+       data[col] = (data[col] - min_val) / (max_val - min_val)
+   else:
+       data[col] = 0
+
+dist_matrix = np.zeros((n, n))
+
+for i in range(n):
+   for j in range(n):
+       total_dist = 0
+       valid_features = 0
+       
+       for col in data.columns:
+           xi = data.iloc[i][col]
+           xj = data.iloc[j][col]
+           
+           if pd.isna(xi) or pd.isna(xj):
+               continue
+           
+           if col in numeric_cols:
+               d = abs(xi - xj)
+
+           else:
+               d = 0 if xi == xj else 1
+           
+           total_dist += d
+           valid_features += 1
+       
+       dist_matrix[i, j] = total_dist / valid_features
+distance_df = pd.DataFrame(dist_matrix)
+
+print(distance_df.iloc[:5, :5])
+```
+
+Berikut adalah code yang digunakan untuk menghitung gower distance
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| :-- | :-- | :-- | :-- | :-- | :-- |
+| 0 | 0.000000 | 0.520408 | 0.418367 | 0.561224 | 0.397959 |
+| 1 | 0.520408 | 0.000000 | 0.183673 | 0.469388 | 0.163265 |
+| 2 | 0.418367 | 0.183673 | 0.000000 | 0.571429 | 0.306122 |
+| 3 | 0.561224 | 0.469388 | 0.571429 | 0.000000 | 0.377551 |
+| 4 | 0.397959 | 0.163265 | 0.306122 | 0.377551 | 0.000000 |
