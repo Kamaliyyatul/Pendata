@@ -304,128 +304,105 @@ Output yang dihasilkan:
 ![original image](https://cdn.mathpix.com/snip/images/9PGgc7ny0uksXf9OeJWUUqJ1W74_wYqqPmGLGPGhBL8.original.fullsize.png)
 3 perhitungan diatas, memiliki kesamaan nilai, artinya perhitungan yang dilakukan sudah dilakukan secara benar dan urut
 
-#### - Mengukur jarak dataset Tipe data campuran
-Dataset yang digunakan dalam contoh ini adalah dataset berjudul Student Alcohol Consumption. Dataset tersebut memiliki kurang lebih 30 atribut. Namun, pada penugasan ini hanya digunakan 7 atribut saja, yaitu sex, age, Medu, Fedu, Fjob, activities, dan schoolsup.
+## Mengukur Jarak Dataset Tipe Data Campuran
+Dataset yang digunakan dalam contoh ini adalah dataset berjudul Student Performance. Dataset ini berisi beberapa atribut dengan tipe data yang berbeda, yaitu tipe data ordinal, numerik, binary, dan kategorikal. Karena adanya perbedaan tipe data tersebut, maka dataset ini termasuk dalam kategori dataset dengan tipe data campuran.
 
-Atribut-atribut tersebut terdiri dari tipe data yang berbeda (numerik dan kategorikal), sehingga termasuk dalam kategori data campuran. Oleh karena itu, diperlukan metode pengukuran jarak yang dapat menangani perbedaan tipe data tersebut. Selanjutnya akan dilakukan proses perhitungan jarak antar data berdasarkan atribut yang telah dipilih.
+Pada contoh perhitungan ini, jarak dihitung antara data ke-1 dan data ke-4 dengan mempertimbangkan beberapa atribut yang memiliki tipe data berbeda. Setiap tipe data dihitung menggunakan metode yang sesuai, kemudian hasilnya dijumlahkan untuk memperoleh jarak total antar data.
 
-#### Perhitungan Manual
-##### 1. Nominal
-Menghitung nominal pada baris 1 dan 2
-Jika nilainya sama = 0
-Jika nilainya beda = 1
+### Ordinal
+Atribut parental level of education termasuk dalam tipe data ordinal, karena memiliki tingkatan atau urutan. Oleh karena itu, setiap kategori terlebih dahulu diberikan nilai peringkat sebagai berikut:
 
-    Sex        = 0  
-    Fjob       = 1  
-    Activities = 0  
-    Schoolsup  = 1  
-    -----------  
-    Jumlah     = 2
-##### 2. Numerik
-Menghitung numerik pada fitur age.
-Rumus:
-$$
-d_{ij}^{(f)} =
-\frac{|x_{if} - x_{jf}|}{\max(x_f) - \min(x_f)}
-$$
+     Ordinal =  Some high school     1
+                High school          2
+                Some collage         3
+                Associate's degree   4
+                Bachelor's degree    5
+                Master's degree      6
+Karena nilai ordinal tidak dapat langsung digunakan dalam perhitungan jarak, maka dilakukan proses normalisasi agar nilainya berada pada rentang 0 sampai 1.
 
-$$
-d_{1,2}^{(f)} =
-\frac{|18 - 17|}{22 - 15}
-$$
+Rumus normalisasi yang digunakan adalah:
+     $z = \frac{r - \min}{\max - \min}$
 
+Hasil normalisasi dari setiap peringkat adalah sebagai berikut:
+
+    Normalisasi = r - min / max - min
+    1 = 1-1 / 6-1 = 0/5 = 0
+    2 = 2-1 / 6-1 = 1/5 = 0,2
+    3 = 3-1 / 6-1 = 2/5 = 0,4
+    4 = 4-1 / 6-1 = 3/5 = 0,6
+    5 = 5-1 / 6-1 = 4/5 = 0,8
+    6 = 6-1 / 6-1 = 5/5 = 1
+Nilai hasil normalisasi ini kemudian digunakan dalam proses perhitungan jarak.
+
+#### Numerik
+Untuk atribut numerik seperti math score, reading score, dan writing score, jarak dihitung menggunakan rumus Euclidean distance.
 $$
-= \frac{1}{7} = 0,143
-$$
-    Age = 0,143
-##### 3. Ordinal
-    urutan = 0
-             1           
-             2
-             3
-             4
-Rumus:     
-$$
-z = \frac{r - \min}{\max - \min}
-$$
-Hitung dari data pada baris 1:
-$$
-\frac{4-0}{4-0} = \frac {4}{4}=1
-$$
-Hitung dari data pada baris 2:
-$$
-\frac {1-0} {4-0} = \frac {1}{4}=0,25
-$$
-$$
-1 - 0,25 = 0,75
+d(1,4) = \sqrt{(0.6-0.6)^2 + (47-72)^2 + (57-72)^2 + (44-74)^2}
 $$
 
-Lakukan hal yang sama pada tipe data fedu
-Hasil akhir: 0,75
-
-##### 4. Hasil akhir nilai gower
-
-Nilai dari tipe data sebelumnya dijumlahkan, kemudian hasilnya dibagi berdasarkan jumlah fitur yang dimiliki.
 $$
-\frac{2 + 0,143 + 0,75 + 0,75}{7} = 0,520
+= \sqrt{0 + 625 + 225 + 900}
 $$
 
+$$
+= \sqrt{1750}
+$$
 
-#### Perhitungan Python
+$$
+= 41.833
+$$
 
-```
-import numpy as np
+Hasil tersebut menunjukkan jarak antara data ke-1 dan data ke-4 berdasarkan atribut numerik yang digunakan.
 
-data = df.copy()
-n = data.shape[0]
+#### Binary
+Pada atribut bertipe binary, perhitungan dilakukan menggunakan dua pendekatan yaitu binary simetris dan binary asimetris.
 
-numeric_cols = data.select_dtypes(include=[np.number]).columns
-categorical_cols = data.select_dtypes(exclude=[np.number]).columns
+##### - Binary Simetris
+Nilai parameter yang diperoleh adalah:
 
-for col in numeric_cols:
-   min_val = data[col].min()
-   max_val = data[col].max()
-   
-   if max_val != min_val:
-       data[col] = (data[col] - min_val) / (max_val - min_val)
-   else:
-       data[col] = 0
+    d(1,4) --> Simetris   q = 0
+                          r = 0
+                          s = 1
+                          t = 0
 
-dist_matrix = np.zeros((n, n))
+Rumus yang digunakan: $\frac{r+s}{q+r+s+t}$
 
-for i in range(n):
-   for j in range(n):
-       total_dist = 0
-       valid_features = 0
-       
-       for col in data.columns:
-           xi = data.iloc[i][col]
-           xj = data.iloc[j][col]
-           
-           if pd.isna(xi) or pd.isna(xj):
-               continue
-           
-           if col in numeric_cols:
-               d = abs(xi - xj)
+Perhitungannya adalah:  $\frac{0+1}{0+0+1+0} = \frac{1}{1} =1$
 
-           else:
-               d = 0 if xi == xj else 1
-           
-           total_dist += d
-           valid_features += 1
-       
-       dist_matrix[i, j] = total_dist / valid_features
-distance_df = pd.DataFrame(dist_matrix)
+##### - Binary Asimetris
+Nilai parameter yang diperoleh adalah:
 
-print(distance_df.iloc[:5, :5])
-```
+    Asimetris   q = 0
+                r = 1
+                s = 0
+                t = 1
 
-Berikut adalah code yang digunakan untuk menghitung gower distance
+Rumus yang digunakan: $\frac{r+s}{q+r+s}$  
 
-|  | 0 | 1 | 2 | 3 | 4 |
-| :-- | :-- | :-- | :-- | :-- | :-- |
-| 0 | 0.000000 | 0.520408 | 0.418367 | 0.561224 | 0.397959 |
-| 1 | 0.520408 | 0.000000 | 0.183673 | 0.469388 | 0.163265 |
-| 2 | 0.418367 | 0.183673 | 0.000000 | 0.571429 | 0.306122 |
-| 3 | 0.561224 | 0.469388 | 0.571429 | 0.000000 | 0.377551 |
-| 4 | 0.397959 | 0.163265 | 0.306122 | 0.377551 | 0.000000 |
+Perhitungannya adalah: $\frac{1+0}{0+1+0} = \frac{1}{1} =1$
+
+Sehingga hasil jarak untuk atribut binary adalah:
+      
+      d(1,4) = 2
+
+#### Kategorikal
+
+Untuk atribut kategorikal, perhitungan dilakukan menggunakan rumus:
+
+     p-m/p
+dengan:
+p = jumlah atribut
+m = jumlah atribut yang sama
+
+Perhitungannya adalah:
+
+    d(1,4) = 1-0 / 1 
+           = 1/1 
+           = 1
+
+#### Hasil Akhir Jarak
+Setelah semua tipe data dihitung, maka nilai jarak total antara data ke-1 dan data ke-4 diperoleh dengan menjumlahkan seluruh hasil perhitungan sebelumnya.
+
+    d(1,4) = 44,833     3
+
+Jumlah atribut yang digunakan adalah 3, sehingga nilai tersebut merupakan hasil pengukuran jarak antar dua data berdasarkan seluruh atribut yang digunakan.
