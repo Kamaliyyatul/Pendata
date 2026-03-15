@@ -693,85 +693,6 @@ x' = \frac{x - x_{\min}}{x_{\max} - x_{\min}}
 </table>
 </div>
 <p>Sedangkan kolom CHAS dan RAD tidak dinormalisasi karena merupakan variabel kategori atau indeks.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p></p></th>
-<th class="head text-left"><p>CRIM</p></th>
-<th class="head text-left"><p>INDUS</p></th>
-<th class="head text-left"><p>CHAS</p></th>
-<th class="head text-left"><p>NOX</p></th>
-<th class="head text-left"><p>RM</p></th>
-<th class="head text-left"><p>AGE</p></th>
-<th class="head text-left"><p>DIS</p></th>
-<th class="head text-left"><p>RAS</p></th>
-<th class="head text-left"><p>TAX</p></th>
-<th class="head text-left"><p>PTRATIO</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p>0</p></td>
-<td class="text-left"><p>0.00632</p></td>
-<td class="text-left"><p>2.31</p></td>
-<td class="text-left"><p>0</p></td>
-<td class="text-left"><p>0.538</p></td>
-<td class="text-left"><p>6.575</p></td>
-<td class="text-left"><p>65.2</p></td>
-<td class="text-left"><p>4.0900</p></td>
-<td class="text-left"><p>1</p></td>
-<td class="text-left"><p>296</p></td>
-<td class="text-left"><p>15.3</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>1</p></td>
-<td class="text-left"><p>0.02731</p></td>
-<td class="text-left"><p>7.07</p></td>
-<td class="text-left"><p>0</p></td>
-<td class="text-left"><p>0.469</p></td>
-<td class="text-left"><p>6.421</p></td>
-<td class="text-left"><p>78.9</p></td>
-<td class="text-left"><p>4.9671</p></td>
-<td class="text-left"><p>2</p></td>
-<td class="text-left"><p>242</p></td>
-<td class="text-left"><p>17.8</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>2</p></td>
-<td class="text-left"><p>0.02729</p></td>
-<td class="text-left"><p>7.07</p></td>
-<td class="text-left"><p>0</p></td>
-<td class="text-left"><p>0.469</p></td>
-<td class="text-left"><p>7.185</p></td>
-<td class="text-left"><p>61.1</p></td>
-<td class="text-left"><p>4.9671</p></td>
-<td class="text-left"><p>2</p></td>
-<td class="text-left"><p>242</p></td>
-<td class="text-left"><p>17.8</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>3</p></td>
-<td class="text-left"><p>0.03237</p></td>
-<td class="text-left"><p>2.18</p></td>
-<td class="text-left"><p>0</p></td>
-<td class="text-left"><p>0.458</p></td>
-<td class="text-left"><p>6.998</p></td>
-<td class="text-left"><p>45.8</p></td>
-<td class="text-left"><p>6.0622</p></td>
-<td class="text-left"><p>3</p></td>
-<td class="text-left"><p>222</p></td>
-<td class="text-left"><p>18.7</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>4</p></td>
-<td class="text-left"><p>0.06905</p></td>
-<td class="text-left"><p>2.18</p></td>
-<td class="text-left"><p>0</p></td>
-<td class="text-left"><p>0.458</p></td>
-<td class="text-left"><p>7.147</p></td>
-<td class="text-left"><p>54.2</p></td>
-<td class="text-left"><p>6.0622</p></td>
-<td class="text-left"><p>3</p></td>
-<td class="text-left"><p>222</p></td>
-<td class="text-left"><p>18.7</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </section>
 <section id="menghitung-similarity">
 <h3>- Menghitung Similarity<a class="headerlink" href="#menghitung-similarity" title="Link to this heading">#</a></h3>
@@ -1149,11 +1070,13 @@ S_i \times Y_{jh}
 <p>Dalam Data Mining, normalisasi min–max merupakan metode yang digunakan untuk mengubah nilai data numerik ke dalam rentang tertentu, misalnya [0,1] atau [−1,1]. Proses ini dilakukan dengan memanfaatkan nilai minimum dan maksimum dari suatu atribut, kemudian setiap nilai data disesuaikan agar berada pada skala baru yang telah ditentukan.</p>
 <p>Berikut rumus dari Min-Max Normalization:</p>
 <p><span class="math notranslate nohighlight">\(v' = \frac{v - min_A}{max_A - min_A}\)</span></p>
-<p>Keterangan:
-<span class="math notranslate nohighlight">\(v\)</span> = nilai asli data
-<span class="math notranslate nohighlight">\(v'\)</span> = nilai setelah normalisasi
-<span class="math notranslate nohighlight">\(\min_A\)</span> = nilai minimum atribut 𝐴
-<span class="math notranslate nohighlight">\(\max_A\)</span> = nilai maksimum atribut 𝐴</p>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v\)</span> = nilai asli data</p></li>
+<li><p><span class="math notranslate nohighlight">\(v'\)</span> = nilai setelah normalisasi
+-<span class="math notranslate nohighlight">\(\min_A\)</span> = nilai minimum atribut 𝐴</p></li>
+<li><p><span class="math notranslate nohighlight">\(\max_A\)</span> = nilai maksimum atribut 𝐴</p></li>
+</ul>
 <p>Contoh: Menggunakan data dari dataset Boston Housing pada kolom MEDV</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1250,31 +1173,44 @@ Selain itu, terdapat variasi Z-Score yang menggunakan mean absolute deviation se
 <p>Berikut untuk rumus dari Z-score Normalization:</p>
 <section id="rumus-z-score-normalization">
 <h4>1. Rumus Z-Score Normalization:<a class="headerlink" href="#rumus-z-score-normalization" title="Link to this heading">#</a></h4>
-<p><span class="math notranslate nohighlight">\(v' = \frac{v - \bar{A}}{\sigma_A}\)</span></p>
-<p>Keterangan:
-𝑣 = nilai asli data
-<span class="math notranslate nohighlight">\(v′\)</span> = nilai setelah normalisasi
-<span class="math notranslate nohighlight">\(\bar{A}\)</span> = rata-rata (mean) dari atribut A
-𝜎𝐴 = standar deviasi dari atribut A</p>
+<div class="math notranslate nohighlight">
+\[v' = \frac{v - \bar{A}}{\sigma_A}\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p>𝑣 = nilai asli data</p></li>
+<li><p><span class="math notranslate nohighlight">\(v′\)</span> = nilai setelah normalisasi</p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{A}\)</span> = rata-rata (mean) dari atribut A</p></li>
+<li><p>𝜎𝐴 = standar deviasi dari atribut A</p></li>
+</ul>
 </section>
 <section id="rumus-menghitung-mean-rata-rata">
 <h4>2. Rumus Menghitung Mean (Rata-rata)<a class="headerlink" href="#rumus-menghitung-mean-rata-rata" title="Link to this heading">#</a></h4>
-<p><span class="math notranslate nohighlight">\(𝜇 = \frac{1}{n}\sum_{i=1}^{n} v_i\)</span></p>
-<p>Keterangan:
-𝜇 = nilai rata-rata (mean)
-<span class="math notranslate nohighlight">\(n\)</span> = jumlah data
-<span class="math notranslate nohighlight">\(v_i\)</span> = nilai data ke-i
-<span class="math notranslate nohighlight">\(\frac{1}{n}\)</span> = faktor pembagi untuk mendapatkan rata-rata</p>
+<div class="math notranslate nohighlight">
+\[𝜇 = \frac{1}{n}\sum_{i=1}^{n} v_i\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Keterangan:
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>𝜇 = nilai rata-rata (mean)</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = jumlah data</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_i\)</span> = nilai data ke-i</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{1}{n}\)</span> = faktor pembagi untuk mendapatkan rata-rata</p></li>
+</ul>
 </section>
 <section id="rumus-menghitung-standar-deviasi">
 <h4>3. Rumus Menghitung Standar Deviasi<a class="headerlink" href="#rumus-menghitung-standar-deviasi" title="Link to this heading">#</a></h4>
-<p><span class="math notranslate nohighlight">\(\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(v_i -{𝜇})^2}\)</span>
-Keterangan:
-<span class="math notranslate nohighlight">\(\sigma\)</span> = standar deviasi
-<span class="math notranslate nohighlight">\({𝜇}\)</span> = rata-rata data
-<span class="math notranslate nohighlight">\(v_i\)</span> = nilai data ke-i
-<span class="math notranslate nohighlight">\(n\)</span> = jumlah data
-<span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>= faktor pembagi yang berarti jumlah total hasil perhitungan dibagi dengan jumlah data untuk mendapatkan rata-rata dari selisih kuadrat tersebut</p>
+<div class="math notranslate nohighlight">
+\[\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(v_i -{𝜇})^2}\]</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Keterangan:
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> = standar deviasi</p></li>
+<li><p><span class="math notranslate nohighlight">\({𝜇}\)</span> = rata-rata data</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_i\)</span> = nilai data ke-i</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = jumlah data</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{1}{n}\)</span>= faktor pembagi yang berarti jumlah total hasil perhitungan dibagi dengan jumlah data untuk mendapatkan rata-rata dari selisih kuadrat tersebut</p></li>
+</ul>
 <p>Contoh: Menggunakan data dari dataset Boston Housing pada kolom MEDV</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1306,10 +1242,11 @@ Keterangan:
 \[
 \mu = 26.233
 \]</div>
-<ul class="simple">
+<ul>
 <li><p>Menghitung standar deviasi
-Mean = 26.233
-Hitung:</p></li>
+Mean = 26.233</p>
+<p>Hitung:</p>
+</li>
 </ul>
 <div class="math notranslate nohighlight">
 \[
@@ -1345,9 +1282,9 @@ Hitung:</p></li>
 <ul class="simple">
 <li><p>Menghitung Z-Score
 Mean = 26.233
-Standar Deviasi = 2.445
-Perhitungan data ke-1:</p></li>
+Standar Deviasi = 2.445</p></li>
 </ul>
+<p>Perhitungan data ke-1:</p>
 <div class="math notranslate nohighlight">
 \[
 v' = \frac {28.7 - 26.233}{2.445}
@@ -1414,12 +1351,15 @@ v' = 0.354
 <p>Tujuan dari metode ini adalah agar nilai absolut terbesar dalam atribut menjadi lebih kecil dari 1 setelah proses transformasi dilakukan. Besarnya pembagi ditentukan oleh nilai j, yaitu bilangan bulat terkecil yang membuat nilai maksimum dari atribut tersebut berada di bawah 1 setelah dibagi dengan 10𝑗.
 Metode decimal scaling termasuk teknik normalisasi yang sederhana dan mudah diterapkan, karena hanya memerlukan operasi pembagian untuk menyesuaikan skala data tanpa mengubah pola atau hubungan antar nilai dalam dataset.</p>
 <p>Berikut rumus dari Decimal Scaling Normalization:</p>
-<p><span class="math notranslate nohighlight">\(v' = \frac{v}{10^j}\)</span></p>
-<p>Keterangan:
-<span class="math notranslate nohighlight">\(v\)</span> = nilai asli data
-<span class="math notranslate nohighlight">\(v'\)</span> = nilai setelah normalisasi
-<span class="math notranslate nohighlight">\(j\)</span> = bilangan bulat terkecil yang membuat nilai maksimum data menjadi kurang dari 1
-<span class="math notranslate nohighlight">\(10^j\)</span> = faktor pembagi untuk menggeser titik desimal</p>
+<div class="math notranslate nohighlight">
+\[v' = \frac{v}{10^j}\]</div>
+<p>Keterangan:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(v\)</span> = nilai asli data</p></li>
+<li><p><span class="math notranslate nohighlight">\(v'\)</span> = nilai setelah normalisasi</p></li>
+<li><p><span class="math notranslate nohighlight">\(j\)</span> = bilangan bulat terkecil yang membuat nilai maksimum data menjadi kurang dari 1</p></li>
+<li><p><span class="math notranslate nohighlight">\(10^j\)</span> = faktor pembagi untuk menggeser titik desimal</p></li>
+</ul>
 <p>Contoh: Menggunakan data dari dataset Boston Housing pada kolom MEDV</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1512,9 +1452,9 @@ Karena <span class="math notranslate nohighlight">\(j\)</span> = 2, maka setiap 
 [[1.        ]
  [0.        ]
  [0.72413793]]
-Normalisasi data dilakukan menggunakan metode Min-Max Normalization dengan bantuan library scikit-learn pada Python. Proses normalisasi dilakukan menggunakan fungsi MinMaxScaler() yang mengubah nilai data ke dalam rentang 0 sampai 1. Dari hasil normalisasi terlihat bahwa nilai terkecil menjadi 0 dan nilai terbesar menjadi 1, sehingga semua data berada pada skala yang sama.
 </pre></div>
 </div>
+<p>Normalisasi data dilakukan menggunakan metode Min-Max Normalization dengan bantuan library scikit-learn pada Python. Proses normalisasi dilakukan menggunakan fungsi MinMaxScaler() yang mengubah nilai data ke dalam rentang 0 sampai 1. Dari hasil normalisasi terlihat bahwa nilai terkecil menjadi 0 dan nilai terbesar menjadi 1, sehingga semua data berada pada skala yang sama.</p>
 </section>
 <section id="id4">
 <h3>2. Z-score Normalization<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
@@ -1550,9 +1490,9 @@ Normalisasi data dilakukan menggunakan metode Min-Max Normalization dengan bantu
 [[ 1.00850764]
  [-1.36284817]
  [ 0.35434052]]
-Pada metode Z-Score Normalization, normalisasi dilakukan dengan menggunakan nilai rata-rata (mean) dan simpangan baku (standard deviation) dari dataset. Berdasarkan hasil normalisasi menggunakan library scikit-learn, nilai data yang berada di bawah rata-rata memiliki nilai negatif, sedangkan nilai yang berada di atas rata-rata memiliki nilai positif. Setelah proses normalisasi dilakukan, data menjadi terstandarisasi dengan rata-rata mendekati 0 sehingga distribusi data menjadi lebih seimbang untuk proses analisis lebih lanjut.
 </pre></div>
 </div>
+<p>Pada metode Z-Score Normalization, normalisasi dilakukan dengan menggunakan nilai rata-rata (mean) dan simpangan baku (standard deviation) dari dataset. Berdasarkan hasil normalisasi menggunakan library scikit-learn, nilai data yang berada di bawah rata-rata memiliki nilai negatif, sedangkan nilai yang berada di atas rata-rata memiliki nilai positif. Setelah proses normalisasi dilakukan, data menjadi terstandarisasi dengan rata-rata mendekati 0 sehingga distribusi data menjadi lebih seimbang untuk proses analisis lebih lanjut.</p>
 </section>
 <section id="id5">
 <h3>3. Decimal Scaling Normalization<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
@@ -1589,10 +1529,10 @@ Pada metode Z-Score Normalization, normalisasi dilakukan dengan menggunakan nila
 [[0.287]
  [0.229]
  [0.271]]
-Pada metode Decimal Scaling Normalization, normalisasi dilakukan dengan cara membagi nilai data menggunakan pangkat sepuluh tertentu (10𝑗) sehingga nilai maksimum data menjadi lebih kecil dari 1. Berdasarkan hasil normalisasi, nilai data yang semula berkisar antara 22.9 hingga 28.7 berubah menjadi 0.229 hingga 0.287. Perubahan ini tidak mengubah hubungan antar data, tetapi hanya mengubah skala nilainya menjadi lebih kecil sehingga data menjadi lebih mudah digunakan dalam proses analisis pada Data Mining.
 </pre></div>
 </div>
-<p>Ringkasan Hasilnya:</p>
+<p>Pada metode Decimal Scaling Normalization, normalisasi dilakukan dengan cara membagi nilai data menggunakan pangkat sepuluh tertentu (10𝑗) sehingga nilai maksimum data menjadi lebih kecil dari 1. Berdasarkan hasil normalisasi, nilai data yang semula berkisar antara 22.9 hingga 28.7 berubah menjadi 0.229 hingga 0.287. Perubahan ini tidak mengubah hubungan antar data, tetapi hanya mengubah skala nilainya menjadi lebih kecil sehingga data menjadi lebih mudah digunakan dalam proses analisis pada Data Mining.
+Ringkasan Hasilnya:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>Nilai asli</p></th>

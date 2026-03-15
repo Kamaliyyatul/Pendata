@@ -113,15 +113,6 @@ Berikut tabel dengan nilai yang sudah di normalisasi:
 
 Sedangkan kolom CHAS dan RAD tidak dinormalisasi karena merupakan variabel kategori atau indeks.
 
-
-|  | CRIM | INDUS | CHAS | NOX | RM | AGE | DIS | RAS | TAX | PTRATIO |
-| :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
-| 0 | 0.00632 | 2.31 | 0 | 0.538 | 6.575 | 65.2 | 4.0900 | 1 | 296 | 15.3 |
-| 1 | 0.02731 | 7.07 | 0 | 0.469 | 6.421 | 78.9 | 4.9671 | 2 | 242 | 17.8 |
-| 2 | 0.02729 | 7.07 | 0 | 0.469 | 7.185 | 61.1 | 4.9671 | 2 | 242 | 17.8 |
-| 3 | 0.03237 | 2.18 | 0 | 0.458 | 6.998 | 45.8 | 6.0622 | 3 | 222 | 18.7 |
-| 4 | 0.06905 | 2.18 | 0 | 0.458 | 7.147 | 54.2 | 6.0622 | 3 | 222 | 18.7 |
-
 #### - Menghitung Similarity
 
 Setelah proses normalisasi selesai dilakukan, tahap berikutnya adalah menghitung nilai similarity antara data yang memiliki missing value dengan data lainnya.
@@ -427,11 +418,11 @@ Berikut rumus dari Min-Max Normalization:
 
 $v' = \frac{v - min_A}{max_A - min_A}$
 
-Keterangan:
-$v$ = nilai asli data
-$v'$ = nilai setelah normalisasi
-$\min_A$ = nilai minimum atribut 𝐴
-$\max_A$ = nilai maksimum atribut 𝐴
+ Keterangan:
+   - $v$ = nilai asli data
+   - $v'$ = nilai setelah normalisasi
+   -$\min_A$ = nilai minimum atribut 𝐴
+   - $\max_A$ = nilai maksimum atribut 𝐴
 
 Contoh: Menggunakan data dari dataset Boston Housing pada kolom MEDV
 
@@ -510,33 +501,33 @@ Berikut untuk rumus dari Z-score Normalization:
 
 ##### 1. Rumus Z-Score Normalization:
 
-$v' = \frac{v - \bar{A}}{\sigma_A}$
+$$v' = \frac{v - \bar{A}}{\sigma_A}$$
 
-Keterangan:
-𝑣 = nilai asli data
-$v′$ = nilai setelah normalisasi
-$\bar{A}$ = rata-rata (mean) dari atribut A
-𝜎𝐴 = standar deviasi dari atribut A
+   Keterangan:
+- 𝑣 = nilai asli data
+- $v′$ = nilai setelah normalisasi
+- $\bar{A}$ = rata-rata (mean) dari atribut A
+- 𝜎𝐴 = standar deviasi dari atribut A
 
 ##### 2. Rumus Menghitung Mean (Rata-rata)
 
-$𝜇 = \frac{1}{n}\sum_{i=1}^{n} v_i$
+$$𝜇 = \frac{1}{n}\sum_{i=1}^{n} v_i$$
 
-Keterangan:
-𝜇 = nilai rata-rata (mean)
-$n$ = jumlah data
-$v_i$ = nilai data ke-i
-$\frac{1}{n}$ = faktor pembagi untuk mendapatkan rata-rata
+    Keterangan:
+- 𝜇 = nilai rata-rata (mean)
+- $n$ = jumlah data
+- $v_i$ = nilai data ke-i
+- $\frac{1}{n}$ = faktor pembagi untuk mendapatkan rata-rata
 
 ##### 3. Rumus Menghitung Standar Deviasi
 
-$\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(v_i -{𝜇})^2}$
-Keterangan:
-$\sigma$ = standar deviasi
-${𝜇}$ = rata-rata data
-$v_i$ = nilai data ke-i
-$n$ = jumlah data
-$\frac{1}{n}$= faktor pembagi yang berarti jumlah total hasil perhitungan dibagi dengan jumlah data untuk mendapatkan rata-rata dari selisih kuadrat tersebut
+$$\sigma = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(v_i -{𝜇})^2}$$
+    Keterangan:
+- $\sigma$ = standar deviasi
+- ${𝜇}$ = rata-rata data
+- $v_i$ = nilai data ke-i
+- $n$ = jumlah data
+- $\frac{1}{n}$= faktor pembagi yang berarti jumlah total hasil perhitungan dibagi dengan jumlah data untuk mendapatkan rata-rata dari selisih kuadrat tersebut
 
 Contoh: Menggunakan data dari dataset Boston Housing pada kolom MEDV
 
@@ -562,8 +553,9 @@ $$
 $$
 
 - Menghitung standar deviasi
-Mean = 26.233
-Hitung:
+  Mean = 26.233
+
+  Hitung:
 
 $$
 (28.7 - 26.233)^2 = 6.086
@@ -600,8 +592,9 @@ $$
 $$
 
 - Menghitung Z-Score
-Mean = 26.233
-Standar Deviasi = 2.445
+    Mean = 26.233
+    Standar Deviasi = 2.445
+
 Perhitungan data ke-1:
 
 $$
@@ -662,13 +655,13 @@ Metode decimal scaling termasuk teknik normalisasi yang sederhana dan mudah dite
 
 Berikut rumus dari Decimal Scaling Normalization:
 
-$v' = \frac{v}{10^j}$
+$$v' = \frac{v}{10^j}$$
 
-Keterangan:
-$v$ = nilai asli data
-$v'$ = nilai setelah normalisasi
-$j$ = bilangan bulat terkecil yang membuat nilai maksimum data menjadi kurang dari 1
-$10^j$ = faktor pembagi untuk menggeser titik desimal
+  Keterangan:
+- $v$ = nilai asli data
+- $v'$ = nilai setelah normalisasi
+- $j$ = bilangan bulat terkecil yang membuat nilai maksimum data menjadi kurang dari 1
+- $10^j$ = faktor pembagi untuk menggeser titik desimal
 
 Contoh: Menggunakan data dari dataset Boston Housing pada kolom MEDV
 
@@ -732,7 +725,8 @@ Hasil Output:
     [[1.        ]
      [0.        ]
      [0.72413793]]
-    Normalisasi data dilakukan menggunakan metode Min-Max Normalization dengan bantuan library scikit-learn pada Python. Proses normalisasi dilakukan menggunakan fungsi MinMaxScaler() yang mengubah nilai data ke dalam rentang 0 sampai 1. Dari hasil normalisasi terlihat bahwa nilai terkecil menjadi 0 dan nilai terbesar menjadi 1, sehingga semua data berada pada skala yang sama.
+
+Normalisasi data dilakukan menggunakan metode Min-Max Normalization dengan bantuan library scikit-learn pada Python. Proses normalisasi dilakukan menggunakan fungsi MinMaxScaler() yang mengubah nilai data ke dalam rentang 0 sampai 1. Dari hasil normalisasi terlihat bahwa nilai terkecil menjadi 0 dan nilai terbesar menjadi 1, sehingga semua data berada pada skala yang sama.
 
 #### 2. Z-score Normalization
 
@@ -764,7 +758,8 @@ Hasil output:
     [[ 1.00850764]
      [-1.36284817]
      [ 0.35434052]]
-    Pada metode Z-Score Normalization, normalisasi dilakukan dengan menggunakan nilai rata-rata (mean) dan simpangan baku (standard deviation) dari dataset. Berdasarkan hasil normalisasi menggunakan library scikit-learn, nilai data yang berada di bawah rata-rata memiliki nilai negatif, sedangkan nilai yang berada di atas rata-rata memiliki nilai positif. Setelah proses normalisasi dilakukan, data menjadi terstandarisasi dengan rata-rata mendekati 0 sehingga distribusi data menjadi lebih seimbang untuk proses analisis lebih lanjut.
+
+Pada metode Z-Score Normalization, normalisasi dilakukan dengan menggunakan nilai rata-rata (mean) dan simpangan baku (standard deviation) dari dataset. Berdasarkan hasil normalisasi menggunakan library scikit-learn, nilai data yang berada di bawah rata-rata memiliki nilai negatif, sedangkan nilai yang berada di atas rata-rata memiliki nilai positif. Setelah proses normalisasi dilakukan, data menjadi terstandarisasi dengan rata-rata mendekati 0 sehingga distribusi data menjadi lebih seimbang untuk proses analisis lebih lanjut.
 
 #### 3. Decimal Scaling Normalization
 
@@ -797,7 +792,8 @@ Hasil Output:
     [[0.287]
      [0.229]
      [0.271]]
-    Pada metode Decimal Scaling Normalization, normalisasi dilakukan dengan cara membagi nilai data menggunakan pangkat sepuluh tertentu (10𝑗) sehingga nilai maksimum data menjadi lebih kecil dari 1. Berdasarkan hasil normalisasi, nilai data yang semula berkisar antara 22.9 hingga 28.7 berubah menjadi 0.229 hingga 0.287. Perubahan ini tidak mengubah hubungan antar data, tetapi hanya mengubah skala nilainya menjadi lebih kecil sehingga data menjadi lebih mudah digunakan dalam proses analisis pada Data Mining.
+
+Pada metode Decimal Scaling Normalization, normalisasi dilakukan dengan cara membagi nilai data menggunakan pangkat sepuluh tertentu (10𝑗) sehingga nilai maksimum data menjadi lebih kecil dari 1. Berdasarkan hasil normalisasi, nilai data yang semula berkisar antara 22.9 hingga 28.7 berubah menjadi 0.229 hingga 0.287. Perubahan ini tidak mengubah hubungan antar data, tetapi hanya mengubah skala nilainya menjadi lebih kecil sehingga data menjadi lebih mudah digunakan dalam proses analisis pada Data Mining.
 Ringkasan Hasilnya:
 
 
