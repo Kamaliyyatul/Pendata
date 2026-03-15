@@ -1,4 +1,4 @@
-# 1. Missing Value dengan Metode WKNN
+# 1. Missing Values dengan Metode WKNN
 
 Missing values merupakan kondisi dimana terdapat data yang tidak tersedia atau kosong pada suatu atribut dalam dataset. Masalah ini sering terjadi pada proses pengumpulan data dan dapat mempengaruhi hasil analisis jika tidak ditangani dengan baik. Oleh karena itu, diperlukan metode untuk mengisi atau memperkirakan nilai yang hilang tersebut.
 
